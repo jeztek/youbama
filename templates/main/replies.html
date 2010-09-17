@@ -1,0 +1,71 @@
+<script type="text/javascript" src="/static/js/mootools.js"></script>
+<table width="481" border="0" align="left" cellpadding="0" cellspacing="0">
+  <tr>
+    <td height="65" colspan="4" valign="bottom">
+    
+    <h2>Replies:</h2>    </td>
+  </tr>
+  
+ {% for video in replies_list %}
+  <tr>
+    <td width="39" rowspan="3" valign="top"><a onclick="
+    if( $('r{{video.id}}').style.display == 'inline'){
+        $('r{{video.id}}').style.display = 'none';
+    }
+    else{
+        $('r{{video.id}}').style.display = 'inline';
+    }
+    "><img src= "http://img.youtube.com/vi/{{video.youtube_id}}/default.jpg" style="cursor:pointer" alt="video thumbnail" border="0" onload="  $('r{{video.id}}').style.display = 'none';" /></a> </td>
+    <td width="10" valign="top">&nbsp;</td>
+    <td colspan="2" valign="top"><strong><a class="style4" onclick="
+    
+    
+    if( $('r{{video.id}}').style.display == 'inline'){
+        $('r{{video.id}}').style.display = 'none';
+    }
+    else{
+        $('r{{video.id}}').style.display = 'inline';
+    }
+    
+    
+    
+    
+    "><U>{{video.title}}</U></a> </strong></td>
+  </tr>
+  <tr>
+    <td width="10" valign="top">&nbsp;</td>
+    <td colspan="2" valign="top"><div id="ReplydesDiv{{video.id}}"> {{video.short_description}}... <a class="style4" onclick="
+     $('ReplydesDiv{{video.id}}').innerHTML=$('ReplylongDes{{video.id}}').innerHTML;">(<U>more</U>)</a></div></td>
+  </tr>
+  <tr>
+    <td width="10" valign="top">&nbsp;</td>
+    <td width="253" height="23" valign="middle"><em>Time:</span></em> {{video.duration_string}}</td>
+    <td width="179" valign="middle"><a id="Replystart" onclick="reportVideo({{video.id}},'ReplyreportDiv{{video.id}}')" class="style5" style="cursor:pointer"><U>Report Video</U></a></td>
+  </tr>
+  <tr>
+    <td colspan="4" valign="bottom">
+    
+    
+    
+    <div id="r{{video.id}}" style="display:inline;">
+      <table width="425" height="365" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+          <td height="365" valign="bottom"><object width="425" height="355">
+            <param name="movie" value="http://www.youtube.com/v/{{video.youtube_id}}&amp;rel=1" />
+            </param>
+            <param name="wmode" value="transparent" />
+            </param>
+            <embed src="http://www.youtube.com/v/{{video.youtube_id}}&amp;rel=1" type="application/x-shockwave-flash" wmode="transparent" width="425" height="355"></embed>
+            </object></td>
+            <td valign="bottom"><a class="style5" onclick="$('r{{video.id}}').style.display = 'none';">&nbsp;&nbsp;<U>close</U></a></td>
+          </tr>
+        </table>
+    </div>
+    <div id="ReplyreportDiv{{video.id}}"> </div>      <div class="vEntry"></div></td>
+  </tr>
+  <div id="ReplylongDes{{video.id}}" style="display:none;">{{video.description}}</div>
+  
+
+  {% endfor %}
+</table>
+ 

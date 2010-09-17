@@ -1,0 +1,40 @@
+==== Youbama - The Citizen Generated Campaign ====
+
+
+=== ABOUT ===
+
+This is the source code for youbama.com, a grassroots campaign effort for presidential candidate Barack Obama.   Users can submit videos to the site explaining why they are voting for Obama and can vote for the videos they like.  Popular videos for the day are presented on the landing page.  
+
+The site was rapidly developed in <2 weeks so don't expect polish here.  The site depends on the Django web framework and PHP.  YouTube is used for video hosting.
+
+
+=== INSTALLATION ===
+
+NOTE: Set DEBUG = True in settings.py to enable debug output
+
+0.) Install dependencies:
+    NOTE: Tested on Ubuntu 8.04 x64 edition
+
+    - Apache 2.0 
+    - Django 1.1+
+    - MySQL or other django supported SQL db
+    - feedparser python library
+    - PHP5
+    - SMTP server for sending video validation emails
+
+1.) Install contents to /var/www/youbama
+2.) Configure apache (see cached/youbama_apache.conf for sample config file)
+3.) Init db: python manage.py syncdb
+4.) Set username/password fields in:
+    	settings.py
+	phptube/process_videos.php (multiple occurrences)
+	phptube/test_upload.php
+5.) Add entries to /etc/crontab:
+
+    	*/10 *	* * *	www-data	php /var/www/youbama/phptube/process_cron.php >> /var/www/youbama/logs/process_videos.log
+
+	00 *	* * * 	www-data	php /var/www/youbama/phptube/update_numviews.php >> /var/www/youbama/logs/update_numviews.log
+
+6.) Set EMAIL_HOST in settings.py
+
+7.) see cached/README to enable caching framework in case of heavy load

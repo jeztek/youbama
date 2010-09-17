@@ -1,0 +1,39 @@
+@charset "UTF-8";
+/* CSS Document */
+
+body {
+       font-family: arial,sans-serif;
+       font-size: 13px;
+       padding-bottom: 15px; 
+}
+
+.vEntry {
+	padding: 10px 0px;
+	border-bottom: 1px dotted #999;
+	}
+	
+	
+	
+	#test {
+	background: #222;
+	color: #fff;
+	padding: 10px;
+	margin: 20px;
+	border: 10px solid pink;
+}
+ 
+#test2 {
+	background: #222;
+	color: #fff;
+	padding: 10px;
+	margin: 20px;
+	border: 10px solid pink;
+}
+
+
+.pagination { margin: 0px; padding: 0px; border: 1px solid #ccc; }
+.pagination span { margin: 0px; padding: 0px 10px 0px 0px; border-right: 1px solid #ccc; }
+.pagination ul { margin: 5px; padding: 0px; list-style: none; }
+.pagination li { margin: 0px 10px 0px 0px; padding: 0px; display: inline; }
+.pagination ul li a:hover { color: #FF5200; }
+.pagination_current { text-decoration: none; color: #FF5200; }

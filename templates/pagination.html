@@ -1,0 +1,29 @@
+<div class="pagination">
+<ul>
+{% if pagination.previous %}
+<li><span><a href="/{{ type }}/{{ pagination.previous }}/">&lt;&lt; Previous</a></span></li>
+{% endif %}
+
+{% if pagination.next %}
+<li><span><a href="/{{ type }}/{{ pagination.next }}/">Next &gt;&gt;</a></span></li>
+{% endif %}
+
+{% for page in pagination.left %}
+<li><a href="/{{ type }}/{{ page }}/" {% ifequal page pagination.page %}class="pagination_current"{% endifequal %}>{{ page }}</a></li>
+{% endfor %}
+
+{% if pagination.middle %}
+<li>...</li>
+{% for page in pagination.middle %}
+<li><a href="/{{ type }}/{{ page }}/" {% ifequal page pagination.page %}class="pagination_current"{% endifequal %}>{{ page }}</a></li>
+{% endfor %}
+{% endif %}
+
+{% if pagination.right %}
+<li>...</li>
+{% for page in pagination.right %}
+<li><a href="/{{ type }}/{{ page }}/" {% ifequal page pagination.page %}class="pagination_current"{% endifequal %}>{{ page }}</a></li>
+{% endfor %}
+{% endif %}
+</ul>
+</div>

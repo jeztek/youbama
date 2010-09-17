@@ -1,0 +1,41 @@
+This directory contains a caching framework to take dynamic pages
+created by django and mirror them to static html pages for faster
+serving by apache.
+
+This system works by renaming the django urls for /home, /popular, and
+/newest to /dhome, /dpopular, and /dnewest.  Using the Location
+directive for apache conf, /home, /popular, and /newest get mapped to
+/var/www/youbama.  /var/www/youbama/home, /var/www/youbama/popular,
+/var/www/youbama/newest are symlinks into
+/var/www/youbama/cached/home, /var/www/youbama/cached/popular, and
+/var/www/youbama/cached/newest, both of which are populated by
+update.pl.
+
+Apache serves static pages for /popular and /newest while the
+update.pl script fetches the dynamic content periodically from django
+and updates the static content.
+
+
+To install, place the following in /etc/rc.local:
+
+{{{ nohup /var/www/youbama/cached/update.pl & exit 0 }}}
+
+Run update.pl then create symlinks:
+ln -s home/1/index.html home/index.html
+ln -s newest/1/index.html newest/index.html
+ln -s popular/1/index.html popular/index.html
+
+Modify /etc/apache2/sites-available/youbama to add Location directives:
+
+        <Location "/home">
+                SetHandler None
+        </Location>
+
+        <Location "/popular">
+                SetHandler None
+        </Location>
+
+        <Location "/newest">
+                SetHandler None
+        </Location>
+
